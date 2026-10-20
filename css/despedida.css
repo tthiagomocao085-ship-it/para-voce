@@ -1,0 +1,548 @@
+```css
+/* =========================================================
+   DESPEDIDA — UMA CARTA SOB O HORIZONTE
+   Fundo cinematográfico • Letras brancas • Detalhes dourados
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Italianno&display=swap');
+
+:root {
+    --farewell-gold: #d9bd88;
+    --farewell-gold-light: #f0dfba;
+    --farewell-text: #f1e9f5;
+    --farewell-muted: #bcb0c9;
+    --farewell-glass: rgba(17, 11, 30, 0.72);
+    --farewell-border: rgba(217, 189, 136, 0.24);
+}
+
+/* ---------- Página ---------- */
+
+.farewell-page {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--farewell-text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ---------- Fundo: horizonte.jpg ---------- */
+
+.farewell-page .night-sky {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.farewell-page .night-sky .sky-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("../images/horizonte.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: scale(1.02);
+}
+
+/* Escurece a imagem sem escondê-la */
+.farewell-page .night-sky .sky-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(12, 7, 24, 0.28) 0%,
+            rgba(12, 7, 24, 0.52) 48%,
+            rgba(12, 7, 24, 0.82) 100%
+        ),
+        linear-gradient(
+            to right,
+            rgba(12, 7, 24, 0.22),
+            transparent 45%,
+            rgba(12, 7, 24, 0.22)
+        );
+}
+
+/* Conteúdo acima do fundo */
+.farewell-main {
+    position: relative;
+    z-index: 1;
+    width: min(100% - 36px, 900px);
+    margin-inline: auto;
+    padding: 100px 0 38px;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.farewell-hero {
+    margin: 0 auto 54px;
+    text-align: center;
+}
+
+.farewell-eyebrow {
+    display: inline-block;
+    color: var(--farewell-gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    line-height: 1.8;
+    text-transform: uppercase;
+    opacity: 0.95;
+}
+
+.farewell-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    width: min(230px, 70%);
+    margin: 26px auto 24px;
+}
+
+.farewell-divider span:not(.farewell-star) {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--farewell-border),
+        var(--farewell-gold)
+    );
+}
+
+.farewell-divider span:last-child {
+    transform: rotate(180deg);
+}
+
+.farewell-star {
+    color: var(--farewell-gold-light);
+    font-size: 18px;
+    line-height: 1;
+    text-shadow: 0 0 18px rgba(240, 223, 186, 0.45);
+}
+
+.farewell-title {
+    margin: 0;
+    color: #fff8ff;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(43px, 7vw, 76px);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 0.99;
+    text-wrap: balance;
+    text-shadow: 0 5px 35px rgba(0, 0, 0, 0.65);
+}
+
+.farewell-title em {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--farewell-gold-light);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.farewell-subtitle {
+    margin: 24px 0 0;
+    color: var(--farewell-muted);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(19px, 3vw, 24px);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.015em;
+}
+
+/* ---------- Cartão da carta ---------- */
+
+.farewell-card {
+    position: relative;
+    padding: clamp(25px, 5vw, 58px);
+    overflow: hidden;
+    border: 1px solid var(--farewell-border);
+    border-radius: 3px;
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(113, 75, 151, 0.12),
+            transparent 55%
+        ),
+        var(--farewell-glass);
+    box-shadow:
+        0 25px 90px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.farewell-card::before,
+.farewell-card::after {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    content: "";
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.farewell-card::before {
+    top: 12px;
+    left: 12px;
+    border-top: 1px solid var(--farewell-gold);
+    border-left: 1px solid var(--farewell-gold);
+}
+
+.farewell-card::after {
+    right: 12px;
+    bottom: 12px;
+    border-right: 1px solid var(--farewell-gold);
+    border-bottom: 1px solid var(--farewell-gold);
+}
+
+.farewell-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 21px;
+    border-bottom: 1px solid rgba(217, 189, 136, 0.16);
+    color: var(--farewell-gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.17em;
+    line-height: 1.8;
+    text-transform: uppercase;
+}
+
+.farewell-card-top > span:first-child {
+    max-width: 90%;
+}
+
+.farewell-card-symbol {
+    flex-shrink: 0;
+    color: var(--farewell-gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+}
+
+/* ---------- Texto da carta: somente letras brancas ---------- */
+
+.farewell-letter {
+    padding-top: 29px;
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(19px, 2.2vw, 22px);
+    font-weight: 400;
+    line-height: 1.95;
+    letter-spacing: 0.005em;
+    overflow-wrap: break-word;
+}
+
+.farewell-letter p,
+.farewell-letter .farewell-greeting,
+.farewell-letter .farewell-final-words {
+    color: #ffffff !important;
+}
+
+.farewell-letter p {
+    margin: 0 0 23px;
+    text-wrap: pretty;
+}
+
+.farewell-letter .farewell-greeting {
+    margin-bottom: 30px;
+    font-size: clamp(26px, 4vw, 34px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.farewell-letter p:not(.farewell-greeting):not(.farewell-final-words) {
+    text-indent: 1.1em;
+}
+
+.farewell-letter .farewell-final-words {
+    margin-top: 34px;
+    margin-bottom: 0;
+    font-size: clamp(25px, 4vw, 31px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* ---------- Assinatura ---------- */
+
+.farewell-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 43px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(217, 189, 136, 0.16);
+    text-align: center;
+}
+
+.farewell-signature-line {
+    width: 44px;
+    height: 1px;
+    margin-bottom: 13px;
+    background: var(--farewell-gold);
+    opacity: 0.75;
+}
+
+.farewell-signature p {
+    margin: 0;
+    color: var(--farewell-muted);
+    font-size: 18px;
+    font-style: italic;
+}
+
+.farewell-signature-name {
+    margin-top: 3px;
+    color: var(--farewell-gold-light);
+    font-family: 'Italianno', 'Cormorant Garamond', cursive;
+    font-size: clamp(43px, 7vw, 59px);
+    line-height: 1.3;
+}
+
+.farewell-signature-star {
+    margin-top: 8px;
+    color: var(--farewell-gold);
+    font-size: 15px;
+}
+
+/* ---------- Encerramento ---------- */
+
+.farewell-ending {
+    padding: 64px 12px 35px;
+    text-align: center;
+}
+
+.farewell-ending-symbol {
+    margin-bottom: 16px;
+    color: var(--farewell-gold);
+    font-size: 26px;
+    text-shadow: 0 0 25px rgba(217, 189, 136, 0.3);
+}
+
+.farewell-ending-text {
+    margin: 0 auto 30px;
+    color: #e1d5eb;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(21px, 3.5vw, 27px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+/* ---------- Botão ---------- */
+
+.farewell-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 100%;
+    min-height: 50px;
+    padding: 14px 24px;
+    border: 1px solid rgba(217, 189, 136, 0.55);
+    border-radius: 2px;
+    background: rgba(31, 20, 49, 0.65);
+    color: var(--farewell-gold-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    line-height: 1.6;
+    text-align: center;
+    text-decoration: none;
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+.farewell-button:hover {
+    transform: translateY(-3px);
+    border-color: var(--farewell-gold-light);
+    background: rgba(91, 61, 117, 0.4);
+    box-shadow: 0 8px 35px rgba(190, 147, 230, 0.12);
+}
+
+.farewell-button:focus-visible {
+    outline: 2px solid var(--farewell-gold-light);
+    outline-offset: 5px;
+}
+
+.farewell-button-arrow {
+    font-size: 17px;
+    transition: transform 0.3s ease;
+}
+
+.farewell-button:hover .farewell-button-arrow {
+    transform: translate(3px, -3px);
+}
+
+/* ---------- Nota ---------- */
+
+.farewell-note {
+    margin: 19px 0 0;
+    color: rgba(220, 207, 230, 0.66);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.035em;
+    line-height: 1.8;
+}
+
+/* ---------- Rodapé ---------- */
+
+.farewell-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 23px 0 5px;
+    border-top: 1px solid rgba(217, 189, 136, 0.12);
+    color: rgba(220, 207, 230, 0.55);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.farewell-footer-dot {
+    color: var(--farewell-gold);
+    font-size: 12px;
+}
+
+/* ---------- Animações ---------- */
+
+.farewell-page .reveal-up {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+.farewell-page .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.farewell-page .delay-1 {
+    transition-delay: 0.15s;
+}
+
+.farewell-page .delay-2 {
+    transition-delay: 0.3s;
+}
+
+/* ---------- Responsividade ---------- */
+
+@media (max-width: 600px) {
+    .farewell-page {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .farewell-main {
+        width: calc(100% - 24px);
+        padding-top: 65px;
+    }
+
+    .farewell-hero {
+        margin-bottom: 35px;
+    }
+
+    .farewell-eyebrow {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+    }
+
+    .farewell-card {
+        padding: 25px 21px;
+    }
+
+    .farewell-card::before {
+        top: 8px;
+        left: 8px;
+    }
+
+    .farewell-card::after {
+        right: 8px;
+        bottom: 8px;
+    }
+
+    .farewell-card-top {
+        font-size: 8px;
+        letter-spacing: 0.1em;
+    }
+
+    .farewell-letter {
+        padding-top: 23px;
+        font-size: 19px;
+        line-height: 1.85;
+    }
+
+    .farewell-letter p {
+        margin-bottom: 20px;
+    }
+
+    .farewell-letter .farewell-greeting {
+        font-size: 27px;
+    }
+
+    .farewell-signature {
+        margin-top: 30px;
+        padding-top: 25px;
+    }
+
+    .farewell-ending {
+        padding-top: 45px;
+    }
+
+    .farewell-button {
+        width: 100%;
+        padding: 13px 15px;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+    }
+
+    .farewell-footer {
+        gap: 9px;
+        font-size: 8px;
+        letter-spacing: 0.09em;
+    }
+}
+
+/* ---------- Acessibilidade ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .farewell-page *,
+    .farewell-page *::before,
+    .farewell-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .farewell-page .reveal-up {
+        opacity: 1;
+        transform: none;
+    }
+}
+```

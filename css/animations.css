@@ -1,0 +1,375 @@
+
+/* =========================================
+   PARA VOCÊ — ATMOSFERA CINEMATOGRÁFICA
+   Animações, estrelas e reflexos
+   ========================================= */
+
+:root {
+    --motion-fast: 350ms;
+    --motion-medium: 800ms;
+    --motion-slow: 1400ms;
+    --motion-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ENTRADA DA ATMOSFERA */
+
+@keyframes atmosphereReveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.night-sky {
+    animation: atmosphereReveal 2s ease-out both;
+}
+
+@keyframes skyReveal {
+    from { opacity: 0; }
+    to   { opacity: .92; }
+}
+
+@keyframes contentReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageEnter {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+body {
+    animation: pageEnter 700ms ease-out both;
+}
+
+/* ESTRELAS DO FUNDO */
+
+.stars-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+@keyframes starsDrift {
+    from {
+        background-position: 0 0, 35px 20px, 80px 50px;
+    }
+    to {
+        background-position: 100px 70px, 0 90px, 140px 0;
+    }
+}
+
+.stars-layer {
+    animation: starsDrift 100s linear infinite;
+}
+
+.generated-star {
+    position: absolute;
+    display: block;
+    width: var(--star-size, 2px);
+    height: var(--star-size, 2px);
+    border-radius: 50%;
+    background: #fff8e8;
+    opacity: .85;
+
+    box-shadow:
+        0 0 5px 1px rgba(255, 248, 232, .85),
+        0 0 12px 3px rgba(219, 184, 255, .5),
+        0 0 22px 5px rgba(164, 120, 255, .22);
+
+    animation:
+        starTwinkle var(--star-duration, 5s)
+        ease-in-out var(--star-delay, 0s) infinite;
+
+    pointer-events: none;
+}
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: .4;
+        transform: scale(.8);
+        filter: brightness(.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.45);
+        filter: brightness(1.6);
+    }
+}
+
+/* BRILHO AMBIENTE */
+
+@keyframes gentleGlow {
+    0%, 100% {
+        opacity: .55;
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.45);
+    }
+}
+
+@keyframes goldShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.ornament-star {
+    animation: gentleGlow 4s ease-in-out infinite;
+}
+
+.divider-diamond {
+    text-shadow:
+        0 0 8px rgba(255, 220, 165, .7),
+        0 0 18px rgba(202, 165, 255, .4);
+
+    animation: starTwinkle 5s ease-in-out infinite;
+}
+
+/* ORNAMENTOS */
+
+@keyframes ornamentReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.top-ornament {
+    animation: ornamentReveal 1.2s .2s both;
+}
+
+/* BOTÕES */
+
+@keyframes buttonEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.start-button {
+    transition:
+        transform 300ms var(--motion-ease),
+        border-color 300ms ease,
+        background 300ms ease,
+        box-shadow 300ms ease;
+}
+
+.start-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 24px rgba(213, 180, 255, .12);
+}
+
+/* REVELAÇÕES */
+
+@keyframes revealFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes revealFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes softReveal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.reveal-up {
+    animation: contentReveal 900ms var(--motion-ease) both;
+}
+
+.reveal-left {
+    animation: revealFromLeft 900ms var(--motion-ease) both;
+}
+
+.reveal-right {
+    animation: revealFromRight 900ms var(--motion-ease) both;
+}
+
+.fade-in {
+    animation: softReveal 1.2s ease both;
+}
+
+.delay-1 { animation-delay: 150ms; }
+.delay-2 { animation-delay: 300ms; }
+.delay-3 { animation-delay: 450ms; }
+.delay-4 { animation-delay: 600ms; }
+
+/* =========================================
+   CARTA — VIDRO, TRANSPARÊNCIA E LUZ
+   ========================================= */
+
+.letter-content {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        rgba(225, 207, 255, .055),
+        rgba(30, 19, 52, .12),
+        rgba(255, 228, 188, .025)
+    );
+
+    border: 1px solid rgba(230, 211, 255, .22);
+    border-radius: 4px;
+
+    box-shadow:
+        0 0 35px rgba(167, 117, 255, .075),
+        0 20px 70px rgba(0, 0, 0, .12),
+        inset 0 0 35px rgba(222, 193, 255, .025);
+
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.letter-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Reflexo sutil sobre a superfície */
+
+.letter-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    background: linear-gradient(
+        120deg,
+        transparent 15%,
+        rgba(255, 255, 255, .055) 45%,
+        transparent 70%
+    );
+
+    opacity: .65;
+}
+
+/* Pequeno brilho dourado */
+
+.letter-content::after {
+    content: "✦";
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    z-index: 2;
+    pointer-events: none;
+
+    color: rgba(255, 224, 167, .9);
+    font-size: 15px;
+
+    text-shadow:
+        0 0 8px rgba(255, 224, 167, .8),
+        0 0 20px rgba(209, 165, 255, .55);
+
+    animation: letterSparkle 3.5s ease-in-out infinite;
+}
+
+@keyframes letterSparkle {
+    0%, 100% {
+        opacity: .45;
+        transform: scale(.85) rotate(0deg);
+        filter: brightness(.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(18deg);
+        filter: brightness(1.5);
+    }
+}
+
+/* TIPOGRAFIA LITERÁRIA */
+
+.letter-content p {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 21px;
+    line-height: 1.9;
+    letter-spacing: .15px;
+    color: rgba(250, 244, 255, .93);
+}
+
+.letter-content .letter-greeting {
+    font-size: 34px;
+    color: #f1d9a9;
+}
+
+.letter-quote {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(25px, 3.5vw, 31px);
+    line-height: 1.55;
+    color: #ead8ff;
+}
+
+.letter-signature span {
+    font-size: 34px;
+    color: #f0d7a5;
+}
+
+/* TRANSIÇÃO ENTRE PÁGINAS */
+
+body.page-leaving {
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+
+    body.page-leaving {
+        opacity: 1;
+        transition: none;
+    }
+}
