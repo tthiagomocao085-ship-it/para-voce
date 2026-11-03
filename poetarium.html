@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#191D35">
+
+    <title>Universo — Entre o Céu e Nós</title>
+
+    <!-- FONTES LITERÁRIAS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --night: #191D35;
+            --night-light: #252943;
+            --night-deep: #121529;
+
+            --gold: #D8BF98;
+            --gold-light: #E9D8B8;
+
+            --ivory: #F4EBDD;
+            --muted: #C8C0C9;
+            --rose: #C9A8AD;
+
+            --title-font: "Cormorant Garamond", Georgia, serif;
+            --book-font: "EB Garamond", Georgia, serif;
+            --ui-font: "Manrope", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 30px;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ivory);
+
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(117, 104, 145, 0.24),
+                    transparent 48%
+                ),
+                radial-gradient(
+                    ellipse at 90% 45%,
+                    rgba(201, 168, 173, 0.08),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    155deg,
+                    var(--night) 0%,
+                    var(--night-light) 48%,
+                    var(--night-deep) 100%
+                );
+
+            font-family: var(--ui-font);
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--night);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* FUNDO CELESTIAL */
+
+        .sky {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .sky-gradient {
+            position: absolute;
+            inset: 0;
+
+            background: linear-gradient(
+                180deg,
+                rgba(25, 29, 53, 0.05),
+                transparent 40%,
+                rgba(12, 14, 30, 0.35)
+            );
+        }
+
+        .sun-glow {
+            position: absolute;
+            width: 750px;
+            height: 750px;
+            top: -510px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+
+            background: radial-gradient(
+                circle,
+                rgba(216, 191, 152, 0.16),
+                rgba(201, 168, 173, 0.06) 42%,
+                transparent 70%
+            );
+
+            filter: blur(12px);
+        }
+
+        .cloud {
+            position: absolute;
+            width: 48vw;
+            height: 170px;
+            border-radius: 50%;
+            filter: blur(65px);
+            opacity: 0.11;
+            background: #B6A5C5;
+        }
+
+        .cloud-one {
+            top: 15%;
+            left: -15%;
+            transform: rotate(-12deg);
+        }
+
+        .cloud-two {
+            top: 37%;
+            right: -18%;
+            background: #B4B7D6;
+        }
+
+        .cloud-three {
+            top: 67%;
+            left: 12%;
+            background: #C9A8AD;
+            opacity: 0.07;
+        }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    1px 1px at 12% 18%,
+                    rgba(244, 235, 221, 0.8) 50%,
+                    transparent 100%
+                ),
+                radial-gradient(
+                    1px 1px at 72% 12%,
+                    rgba(244, 235, 221, 0.7) 50%,
+                    transparent 100%
+                ),
+                radial-gradient(
+                    1px 1px at 83% 32%,
+                    rgba(244, 235, 221, 0.6) 50%,
+                    transparent 100%
+                ),
+                radial-gradient(
+                    1px 1px at 24% 47%,
+                    rgba(244, 235, 221, 0.6) 50%,
+                    transparent 100%
+                ),
+                radial-gradient(
+                    1px 1px at 58% 57%,
+                    rgba(244, 235, 221, 0.6) 50%,
+                    transparent 100%
+                ),
+                radial-gradient(
+                    1px 1px at 92% 70%,
+                    rgba(244, 235, 221, 0.6) 50%,
+                    transparent 100%
+                ),
+                radial-gradient(
+                    1px 1px at 8% 79%,
+                    rgba(244, 235, 221, 0.6) 50%,
+                    transparent 100%
+                );
+        }
+
+        /* CABEÇALHO */
+
+        .topline {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 28px 0;
+
+            border-bottom: 1px solid rgba(244, 235, 221, 0.12);
+        }
+
+        .brand {
+            text-decoration: none;
+            font-family: var(--ui-font);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.24em;
+        }
+
+        .brand span {
+            color: var(--gold);
+            margin-left: 5px;
+        }
+
+        .top-note {
+            color: rgba(244, 235, 221, 0.58);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ABERTURA */
+
+        .opening {
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 100px 0 0;
+        }
+
+        .opening-intro {
+            max-width: 690px;
+            margin: 0 auto 75px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        .opening h1 {
+            margin: 23px 0 10px;
+            font-family: var(--title-font);
+            font-size: clamp(76px, 11vw, 124px);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.045em;
+        }
+
+        .opening h1 span {
+            color: var(--gold);
+        }
+
+        .intro-copy {
+            margin: 28px auto;
+            color: #E5D5D3;
+            font-family: var(--book-font);
+            font-size: clamp(20px, 3vw, 25px);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .intro-divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 140px;
+            margin: 30px auto;
+            color: var(--gold);
+        }
+
+        .intro-divider::before,
+        .intro-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(216, 191, 152, 0.55);
+        }
+
+        .intro-description {
+            max-width: 510px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-family: var(--book-font);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* FOTO E MENSAGEM */
+
+        .memory-layout {
+            display: grid;
+            grid-template-columns:
+                minmax(250px, 0.85fr)
+                minmax(300px, 1fr);
+
+            gap: clamp(38px, 8vw, 100px);
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .photo-wrap {
+            margin: 0;
+            min-width: 0;
+        }
+
+        .photo-frame {
+            padding: 12px 12px 19px;
+            background: #F2E9DC;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.26),
+                0 0 0 1px rgba(255, 255, 255, 0.12);
+        }
+
+        .memory-photo {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: saturate(0.95);
+        }
+
+        .photo-caption {
+            padding: 17px 5px 0;
+            color: #5D5360;
+            font-family: var(--book-font);
+            font-size: 16px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .photo-decoration {
+            margin-top: 17px;
+            color: var(--gold);
+            font-family: var(--title-font);
+            font-size: 27px;
+            text-align: center;
+        }
+
+        .message-card {
+            position: relative;
+            padding: clamp(27px, 4vw, 44px);
+
+            border: 1px solid rgba(244, 235, 221, 0.16);
+
+            background: linear-gradient(
+                145deg,
+                rgba(244, 235, 221, 0.055),
+                rgba(255, 255, 255, 0.012)
+            );
+
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
+        }
+
+        .message-flower {
+            position: absolute;
+            top: 22px;
+            right: 25px;
+            color: rgba(216, 191, 152, 0.8);
+            font-family: var(--title-font);
+            font-size: 26px;
+        }
+
+        .message-kicker {
+            padding-right: 30px;
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .message-title {
+            margin: 22px 0;
+            font-family: var(--title-font);
+            font-size: 54px;
+            font-weight: 400;
+            line-height: 0.95;
+        }
+
+        .message-copy {
+            color: #D8D0D8;
+            font-family: var(--book-font);
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .message-copy p {
+            margin: 0 0 17px;
+        }
+
+        .message-signature {
+            margin-top: 27px;
+            padding-top: 19px;
+            border-top: 1px solid rgba(244, 235, 221, 0.13);
+            color: var(--gold-light);
+            font-family: var(--book-font);
+            font-size: 19px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* TRANSIÇÃO */
+
+        .turn-page {
+            max-width: 570px;
+            margin: 140px auto 120px;
+            padding: 0 15px;
+            text-align: center;
+
+            opacity: 0;
+            transform: translateY(15px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .turn-page.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tiny {
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .rule {
+            width: 65px;
+            height: 1px;
+            margin: 25px auto;
+            background: rgba(216, 191, 152, 0.6);
+        }
+
+        .turn-page h2 {
+            margin: 0 0 24px;
+            font-family: var(--title-font);
+            font-size: clamp(48px, 7vw, 72px);
+            font-weight: 400;
+            line-height: 0.95;
+        }
+
+        .turn-page p {
+            max-width: 410px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-family: var(--book-font);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .continue,
+        .chapter-start {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+
+            margin-top: 35px;
+            padding: 15px 22px;
+
+            border: 1px solid rgba(216, 191, 152, 0.55);
+            color: var(--ivory);
+            background: rgba(255, 255, 255, 0.015);
+
+            text-decoration: none;
+            font-family: var(--ui-font);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .continue:hover,
+        .chapter-start:hover {
+            color: var(--night);
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .continue span,
+        .chapter-start span {
+            color: var(--gold);
+            font-size: 16px;
+        }
+
+        .continue:hover span,
+        .chapter-start:hover span {
+            color: var(--night);
+        }
+
+        /* CAPA */
+
+        .book-section {
+            position: relative;
+            overflow: hidden;
+            padding: 125px 24px 130px;
+
+            background: linear-gradient(
+                180deg,
+                rgba(12, 14, 30, 0.08),
+                rgba(10, 12, 27, 0.48),
+                rgba(12, 14, 30, 0.12)
+            );
+
+            border-top: 1px solid rgba(244, 235, 221, 0.08);
+            border-bottom: 1px solid rgba(244, 235, 221, 0.08);
+            text-align: center;
+        }
+
+        .book-section::before {
+            content: "";
+            position: absolute;
+            width: 510px;
+            height: 510px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(216, 191, 152, 0.08);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 45px rgba(216, 191, 152, 0.018),
+                0 0 0 90px rgba(216, 191, 152, 0.012);
+
+            pointer-events: none;
+        }
+
+        .book-inner {
+            position: relative;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .book-overline {
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.23em;
+            text-transform: uppercase;
+        }
+
+        .book-ornament {
+            margin: 30px auto;
+            color: var(--gold);
+            font-family: var(--title-font);
+            font-size: 28px;
+        }
+
+        .book-title {
+            margin: 0;
+            font-family: var(--title-font);
+            font-size: clamp(72px, 12vw, 124px);
+            font-weight: 400;
+            line-height: 0.82;
+            letter-spacing: -0.045em;
+        }
+
+        .book-subtitle {
+            margin: 35px 0 0;
+            color: #E0C9C7;
+            font-family: var(--book-font);
+            font-size: clamp(19px, 3vw, 25px);
+            font-style: italic;
+        }
+
+        .book-description {
+            max-width: 440px;
+            margin: 27px auto 0;
+            color: var(--muted);
+            font-family: var(--book-font);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .chapter-start {
+            margin-top: 10px;
+        }
+
+        /* CAPÍTULO I */
+
+        .chapter-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 120px 30px 115px;
+        }
+
+        .chapter-label {
+            color: var(--gold);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .chapter-heading {
+            max-width: 660px;
+            margin: 30px auto 20px;
+            font-family: var(--title-font);
+            font-size: clamp(48px, 7vw, 78px);
+            font-weight: 400;
+            line-height: 0.98;
+            letter-spacing: -0.02em;
+            text-align: center;
+        }
+
+        .chapter-deck {
+            max-width: 490px;
+            margin: 0 auto 58px;
+            color: #D9C4C9;
+            font-family: var(--book-font);
+            font-size: 23px;
+            font-style: italic;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .chapter-body {
+            color: #DDD5DC;
+            font-family: var(--book-font);
+            font-size: 21px;
+            line-height: 1.85;
+        }
+
+        .chapter-body p {
+            margin: 0 0 28px;
+        }
+
+        .chapter-body p:first-child::first-letter {
+            float: left;
+            padding: 8px 12px 0 0;
+            color: var(--gold);
+            font-family: var(--title-font);
+            font-size: 76px;
+            line-height: 0.75;
+        }
+
+        .chapter-end {
+            margin: 55px 0 25px;
+            color: var(--gold);
+            font-family: var(--title-font);
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 60px;
+            padding-top: 23px;
+            border-top: 1px solid rgba(244, 235, 221, 0.13);
+        }
+
+        .chapter-navigation a {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .chapter-navigation a:hover {
+            color: var(--ivory);
+        }
+
+        /* RODAPÉ */
+
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            width: min(1120px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 28px 0 36px;
+
+            border-top: 1px solid rgba(244, 235, 221, 0.1);
+            color: rgba(244, 235, 221, 0.48);
+
+            font-size: 9px;
+            letter-spacing: 0.06em;
+        }
+
+        .foot-brand {
+            color: var(--ivory);
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+        }
+
+        /* ANIMAÇÃO DISCRETA */
+
+        .fade-in {
+            animation: fadeUp 1.1s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CELULAR E TABLET */
+
+        @media (max-width: 760px) {
+            .topline {
+                width: calc(100% - 36px);
+                padding: 22px 0;
+            }
+
+            .top-note {
+                max-width: 150px;
+                font-size: 9px;
+                line-height: 1.5;
+                text-align: right;
+            }
+
+            .opening {
+                width: calc(100% - 38px);
+                padding-top: 75px;
+            }
+
+            .opening-intro {
+                margin-bottom: 50px;
+            }
+
+            .memory-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 43px;
+                max-width: 450px;
+            }
+
+            .photo-wrap {
+                width: min(85%, 350px);
+                margin: 0 auto;
+            }
+
+            .message-card {
+                padding: 31px 27px;
+            }
+
+            .turn-page {
+                margin: 100px auto 90px;
+            }
+
+            .book-section {
+                padding: 100px 22px;
+            }
+
+            .chapter-content {
+                padding: 90px 25px;
+            }
+
+            .chapter-body {
+                font-size: 20px;
+            }
+
+            .footer {
+                width: calc(100% - 38px);
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .brand {
+                font-size: 10px;
+                letter-spacing: 0.16em;
+            }
+
+            .message-title {
+                font-size: 46px;
+            }
+
+            .chapter-navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .chapter-body {
+                font-size: 19px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FUNDO CELESTIAL -->
+    <div class="sky" aria-hidden="true">
+        <div class="sky-gradient"></div>
+        <div class="sun-glow"></div>
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
+        <div class="cloud cloud-three"></div>
+        <div class="stars"></div>
+    </div>
+
+    <!-- CABEÇALHO -->
+    <header class="topline">
+        <a class="brand" href="#inicio">
+            um livrinho escrito por alguém que te admira muito <span>✧</span>
+        </a>
+
+        <div class="top-note">
+            um pequeno universo feito para você
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ABERTURA -->
+        <section class="opening" id="inicio">
+
+            <div class="opening-intro">
+                <div class="eyebrow">
+                    uma pequena surpresa
+                </div>
+
+                <h1>
+                    Para você<span>.</span>
+                </h1>
+
+                <p class="intro-copy">
+                    um lugarzinho bonito no meio de tantos dias comuns.
+                </p>
+
+                <div class="intro-divider">
+                    <span>✧</span>
+                </div>
+
+                <p class="intro-description">
+                    sabe mano, esse mês foi muito corrido, fiz mt coisa e não dediquei meu tempo
+                    para o site, te peço mil perdões.
+                    Voltando, você tinha postado uma ft nos storys, parece coisa de IA mn kkk
+                    como que alguém pode ser desse jeito?
+                    Fique à vontade pra desfrutar um pouquinho do que eu proporcionei aq,
+                    e se não quiser, ta tudo bem :)
+                    
+                    
+                    
+                    
+                </p>
+            </div>
+
+            <!-- FOTOGRAFIA E MENSAGEM -->
+            <div class="memory-layout">
+
+                <figure class="photo-wrap">
+                    <div class="photo-frame">
+
+                        <!-- A FOTO FICA NA PASTA images/macacos.png -->
+                        <img
+                            src="images/macacos.png"
+                            alt="Nossa foto engraçada dos macaquinhos"
+                            class="memory-photo"
+                            id="memoryPhoto"
+                        >
+
+                        <figcaption class="photo-caption" id="photoCaption">
+                            imagem 1 — prova de que o universo tem bom gosto
+                        </figcaption>
+
+                    </div>
+
+                    <div class="photo-decoration" aria-hidden="true">
+                        ✧
+                    </div>
+                </figure>
+
+                <article class="message-card">
+                    <div class="message-flower" aria-hidden="true">
+                        ❦
+                    </div>
+
+                    <div class="message-kicker">
+                        um recadinho antes de começar
+                    </div>
+
+                    <h2 class="message-title">
+                        Ei, você.
+                    </h2>
+
+                    <div class="message-copy">
+                        <p>
+                            sim, você mesma. a pessoa que talvez nem imagine
+                            o tamanho do espaço que ocupa em certas partes
+                            dos meus pensamentos.
+                        </p>
+
+                        <p>
+                            eu poderia simplesmente escrever uma mensagem
+                            e pronto. mas achei que você merecia algo um
+                            pouquinho diferente.
+                        </p>
+
+                        <p>
+                            então fiz este cantinho. não porque palavras
+                            bonitas sejam suficientes para explicar tudo,
+                            mas porque às vezes elas são um bom começo.
+                        </p>
+
+                        <p>
+                            e, antes que você pergunte: sim, eu tive trabalho
+                            para fazer isso. então espero que goste.
+                            pode sorrir agora, está autorizado. ♡
+                        </p>
+                    </div>
+
+                    <div class="message-signature" id="messageSignature">
+                        com carinho, alguém que pensou em você.
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- TRANSIÇÃO -->
+            <div class="turn-page" id="turnPage">
+                <div class="tiny">
+                    e agora, uma coisa especial
+                </div>
+
+                <div class="rule"></div>
+
+                <h2>
+                    365 páginas.<br>
+                    Um universo inteiro.
+                </h2>
+
+                <p>
+                    porque algumas histórias merecem mais do que
+                    um parágrafo. merecem tempo, cuidado e um lugar
+                    onde possam existir.
+                </p>
+
+                <button class="continue" id="revealBook" type="button">
+                    abrir este pequeno universo
+                    <span>↓</span>
+                </button>
+            </div>
+
+        </section>
+
+        <!-- CAPA -->
+        <section class="book-section" id="livro">
+            <div class="book-inner fade-in">
+
+                <div class="book-overline">
+                    uma história escrita com carinho
+                </div>
+
+                <div class="book-ornament" aria-hidden="true">
+                    ✧
+                </div>
+
+                <h2 class="book-title" id="bookTitle">
+                    Entre o<br>Universo e nós
+                </h2>
+
+                <p class="book-subtitle">
+                    365 páginas de pequenas coisas bonitas
+                </p>
+
+                <p class="book-description">
+                    um livro sobre momentos, lembranças, sentimentos
+                    e todas aquelas pequenas coisas que, de alguma forma,
+                    tornam os dias mais especiais. uma página de cada vez.
+                </p>
+
+                <div class="book-ornament" aria-hidden="true">
+                    ❦
+                </div>
+
+                <a class="chapter-start" href="#capitulo-1">
+                    começar a leitura
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CAPÍTULO I -->
+        <section class="chapter-content" id="capitulo-1">
+
+            <div class="chapter-label">
+                capítulo I · página 001 de 365
+            </div>
+
+            <h2 class="chapter-heading">
+                A mais bela criação de Deus.
+            </h2>
+
+            <p class="chapter-deck">
+                um pitoquinho de belas palavras, um pedaço de Deus em letras.
+            </p>
+
+            <article class="chapter-body">
+
+                <p>
+                    existem pessoas que chegam à nossa vida sem precisar
+                    de grandes acontecimentos. às vezes, tudo começa com
+                    uma conversa qualquer, uma brincadeira sem importância
+                    ou simplismente por obra do destino.
+                </p>
+
+                <p>
+                    só que o tempo passa, os dias se acumulam e, quando
+                    percebemos, aquela pessoa já faz parte de pequenas
+                    coisas da nossa rotina. aparece em pensamentos
+                    inesperados, em histórias que queremos contar e
+                    em sorrisos que surgem sem uma explicação muito clara.
+                </p>
+
+                <p>
+                    talvez seja assim que algumas histórias começam:
+                    discretamente, sem anunciar o que serão e sem prometer
+                    o que ainda não podem saber. apenas acontecendo, e criando
+                    lembranças, momentos e aventuras.
+                </p>
+
+                <p>
+                    e eu gosto de pensar que as coisas mais bonitas não
+                    precisam ser perfeitas para terem valor. elas podem
+                    nascer de conversas bobas, de pequenas implicâncias,
+                    de lembranças simples e até daqueles silêncios que
+                    não precisam ser preenchidos o tempo inteiro.
+                </p>
+
+                <p>
+                    por isso, esta primeira página não precisa explicar
+                    tudo. ela só precisa registrar uma coisa: entre tantos
+                    dias comuns, existem pessoas que fazem alguns deles
+                    parecerem diferentes.
+                </p>
+
+                <p>
+                    e, se este livro tem um começo, talvez seja justamente
+                    aqui. não como uma promessa sobre o futuro, mas como
+                    uma forma de valorizarmos o que vivemos e o que ainda
+                    virá. 
+                </p>
+
+                <div class="chapter-end">
+                    ✧
+                </div>
+            </article>
+
+            <nav class="chapter-navigation" aria-label="Navegação do livro">
+                <a href="#inicio">
+                    ↑ voltar ao início
+                </a>
+
+                <a href="#livro">
+                    voltar à capa ↑
+                </a>
+            </nav>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+        <a class="foot-brand" href="#inicio">
+            :)
+        </a>
+
+        <span>
+            feito de palavras, em especial, às do meu coração kkkk
+        </span>
+
+        <a href="#inicio" style="color: inherit; text-decoration: none;">
+            voltar ao céu ↑
+        </a>
+    </footer>
+
+    <!-- INTERAÇÕES SIMPLES: SEM PARTÍCULAS OU EFEITOS DE TOQUE -->
+    <script>
+        const PERSONALIZAR = {
+            nomeDoLivro: "Entre o Céu e Nós",
+            assinatura: "com carinho, alguém que pensou em você.",
+            legendaDaFoto:
+                "imagem 1 — prova de que o universo tem bom gosto"
+        };
+
+        // Atualiza os textos personalizáveis.
+        document.getElementById("photoCaption").textContent =
+            PERSONALIZAR.legendaDaFoto;
+
+        document.getElementById("messageSignature").textContent =
+            PERSONALIZAR.assinatura;
+
+        // Divide o título da capa em duas linhas.
+        const titleWords = PERSONALIZAR.nomeDoLivro.trim().split(/\s+/);
+        const breakAt = Math.ceil(titleWords.length / 2);
+
+        const title = document.getElementById("bookTitle");
+        title.replaceChildren();
+
+        title.append(
+            document.createTextNode(
+                titleWords.slice(0, breakAt).join(" ")
+            ),
+            document.createElement("br"),
+            document.createTextNode(
+                titleWords.slice(breakAt).join(" ")
+            )
+        );
+
+        // Exibe suavemente a transição quando ela entra na tela.
+        const turnPage = document.getElementById("turnPage");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            turnPage.classList.add("in-view");
+                            observer.disconnect();
+                        }
+                    });
+                },
+                { threshold: 0.15 }
+            );
+
+            observer.observe(turnPage);
+        } else {
+            turnPage.classList.add("in-view");
+        }
+
+        // Botão que leva à capa.
+        document.getElementById("revealBook").addEventListener(
+            "click",
+            () => {
+                document.getElementById("livro").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        );
+
+        // Tecla Home: volta ao início.
+        window.addEventListener("keydown", event => {
+            const tag = document.activeElement.tagName;
+
+            if (
+                event.key === "Home" &&
+                !["INPUT", "TEXTAREA"].includes(tag)
+            ) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
